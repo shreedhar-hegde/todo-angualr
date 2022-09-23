@@ -6,6 +6,9 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { AddItemComponent } from 'src/app/shared/add-item/add-item.component';
+import { MatDialog } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-list-todo',
   templateUrl: './list-todo.component.html',
@@ -16,8 +19,10 @@ export class ListTodoComponent implements OnInit {
   pending!: string[];
   inProgress!: string[];
   done!: string[];
+  status: string = 'pending';
+  what!: string;
 
-  constructor(private todoService: TodoService) {
+  constructor(private todoService: TodoService, public dialog: MatDialog) {
     this.todos$ = this.todoService.fetchTodos();
   }
 
@@ -49,6 +54,17 @@ export class ListTodoComponent implements OnInit {
       this.done = this.filterTodos({ todos, status: 'done' });
       this.inProgress = this.filterTodos({ todos, status: 'inProgress' });
       this.pending = this.filterTodos({ todos, status: 'pending' });
+    });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddItemComponent, {
+      width: '18vw',
+      data: { status: this.status, what: this.what },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.todoService.addNewTodo(result);
     });
   }
 }

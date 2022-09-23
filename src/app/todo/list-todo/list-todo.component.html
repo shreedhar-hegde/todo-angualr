@@ -1,5 +1,5 @@
 <div>
-  <div cdkDropListGroup class="list-container">
+  <div cdkDropListGroup class="list-container" style="height: 80vh">
     <div class="example-container">
       <h2>Pending</h2>
 
@@ -11,7 +11,12 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        <div class="example-box" *ngFor="let item of pending" cdkDrag>
+        <div
+          style="background-color: rgb(241, 155, 155)"
+          class="example-box"
+          *ngFor="let item of pending"
+          cdkDrag
+        >
           {{ item }}
         </div>
       </div>
@@ -28,7 +33,12 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        <div class="example-box" *ngFor="let item of inProgress" cdkDrag>
+        <div
+          style="background-color: rgb(242, 242, 155)"
+          class="example-box"
+          *ngFor="let item of inProgress"
+          cdkDrag
+        >
           {{ item }}
         </div>
       </div>
@@ -45,7 +55,12 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        <div class="example-box" *ngFor="let item of done" cdkDrag>
+        <div
+          style="background-color: lightgreen"
+          class="example-box"
+          *ngFor="let item of done"
+          cdkDrag
+        >
           {{ item }}
         </div>
       </div>
@@ -54,19 +69,14 @@
 
   <div
     class="add-list-button-container"
-    style="
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 60vh;
-      margin-right: 10vw;
-    "
+    style="display: flex; justify-content: flex-end; margin-right: 10vw"
   >
     <button
       mat-icon-button
       style="background-color: #673ab7; color: white"
       aria-label="Example icon button with a home icon"
     >
-      <mat-icon>add</mat-icon>
+      <mat-icon (click)="openDialog()">add</mat-icon>
     </button>
   </div>
 </div>

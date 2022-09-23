@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface Todo {
   what: string;
@@ -11,19 +11,20 @@ export interface Todo {
 })
 export class TodoService {
   constructor() {}
-
   todos = [
     { what: 'Bring Grocery', status: 'inProgress' },
     { what: 'Pay bills', status: 'pending' },
     { what: 'Exercise', status: 'done' },
   ];
 
+  todos$ = new BehaviorSubject(this.todos);
+
   fetchTodos() {
-    return new Observable<Todo[]>((observer: any) => {
-      observer.next(this.todos),
-        (error: any) => {
-          observer.error(error);
-        };
-    });
+    return this.todos$;
+  }
+
+  addNewTodo(newTodo: Todo) {
+    this.todos.push(newTodo);
+    this.todos$.next(this.todos);
   }
 }
