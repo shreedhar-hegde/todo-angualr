@@ -27,4 +27,8 @@ export class TodoService {
     this.todos.push(newTodo);
     this.todos$.next(this.todos);
   }
+
+  updateTodos(todos: Todo[]) {
+    this.todos$.next(todos);
+  }
 }

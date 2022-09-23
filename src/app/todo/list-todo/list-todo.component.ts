@@ -21,6 +21,7 @@ export class ListTodoComponent implements OnInit {
   done!: string[];
   status: string = 'pending';
   what!: string;
+  todos!: Todo[];
 
   constructor(private todoService: TodoService, public dialog: MatDialog) {
     this.todos$ = this.todoService.fetchTodos();
@@ -51,6 +52,7 @@ export class ListTodoComponent implements OnInit {
 
   ngOnInit(): void {
     this.todos$.subscribe((todos: Todo[]) => {
+      this.todos = todos;
       this.done = this.filterTodos({ todos, status: 'done' });
       this.inProgress = this.filterTodos({ todos, status: 'inProgress' });
       this.pending = this.filterTodos({ todos, status: 'pending' });
@@ -66,5 +68,16 @@ export class ListTodoComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       this.todoService.addNewTodo(result);
     });
+  }
+
+  deletePending(pendingIndex: string) {
+    this.pending = this.pending.filter(
+      (item, index) => index === parseInt(pendingIndex)
+    );
+  }
+
+  deleteTodo(what: string) {
+    this.todos = this.todos.filter((todo: Todo) => todo.what !== what);
+    this.todoService.updateTodos(this.todos);
   }
 }

@@ -14,10 +14,13 @@
         <div
           style="background-color: rgb(241, 155, 155)"
           class="example-box"
-          *ngFor="let item of pending"
+          *ngFor="let item of pending; let index"
           cdkDrag
         >
           {{ item }}
+          <button mat-icon-button>
+            <mat-icon (click)="deleteTodo(item)">delete</mat-icon>
+          </button>
         </div>
       </div>
     </div>
@@ -40,6 +43,9 @@
           cdkDrag
         >
           {{ item }}
+          <button mat-icon-button>
+            <mat-icon (click)="deleteTodo(item)">delete</mat-icon>
+          </button>
         </div>
       </div>
     </div>
@@ -62,6 +68,9 @@
           cdkDrag
         >
           {{ item }}
+          <button mat-icon-button>
+            <mat-icon (click)="deleteTodo(item)">delete</mat-icon>
+          </button>
         </div>
       </div>
     </div>
