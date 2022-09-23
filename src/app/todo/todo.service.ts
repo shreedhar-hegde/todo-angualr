@@ -13,9 +13,9 @@ export class TodoService {
   constructor() {}
 
   todos = [
-    { what: 'Bring Grocery', status: 'Not started' },
-    { what: 'Pay bills', status: 'In progress' },
-    { what: 'Exercise', status: 'Done' },
+    { what: 'Bring Grocery', status: 'inProgress' },
+    { what: 'Pay bills', status: 'pending' },
+    { what: 'Exercise', status: 'done' },
   ];
 
   fetchTodos() {
