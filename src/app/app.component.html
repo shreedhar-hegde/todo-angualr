@@ -1,2 +1,39 @@
-<!-- <app-list-todo></app-list-todo> -->
+<mat-drawer-container class="example-container" autosize>
+  <div class="example-sidenav-content">
+    <mat-toolbar color="primary" mat-toolbar>
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon type="button" mat-button (click)="drawer.toggle()"
+          >menu</mat-icon
+        >
+      </button>
+      <div
+        style="
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <span>Task Tracker</span>
+      </div>
+    </mat-toolbar>
+  </div>
+</mat-drawer-container>
+
+<mat-drawer #drawer class="example-sidenav" mode="side">
+  <mat-toolbar
+    style="display: flex; align-items: center; justify-content: center"
+    color="primary"
+    mat-toolbar
+  >
+    <button mat-mini-fab (click)="drawer.toggle()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar>
+</mat-drawer>
+
 <router-outlet></router-outlet>
