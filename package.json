@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build:prod": "ng build --configuration production --base-href https://shreedhar-hegde.github.io/todo-angular",
+    "test": "ng test",
     "test:headless": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
