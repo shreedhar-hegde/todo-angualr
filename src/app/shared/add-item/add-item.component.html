@@ -3,12 +3,29 @@
     <mat-label>Task</mat-label>
     <input matInput [(ngModel)]="data.what" />
   </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Finish By</mat-label>
+    <input
+      matInput
+      [min]="minDate"
+      [max]="maxDate"
+      [matDatepicker]="picker"
+      [(ngModel)]="data.finishBy"
+    />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
   <button
     mat-button
-    [mat-dialog-close]="{ what: data.what, status: 'pending' }"
+    [mat-dialog-close]="{
+      what: data.what,
+      status: 'pending',
+      finishBy: data.finishBy
+    }"
     cdkFocusInitial
   >
     Add
