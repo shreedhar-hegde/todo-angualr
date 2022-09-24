@@ -12,12 +12,31 @@
         (cdkDropListDropped)="drop($event)"
       >
         <div
-          style="background-color: rgb(241, 155, 155)"
+          style="display: flex; background-color: rgb(241, 155, 155)"
           class="example-box"
           *ngFor="let item of pending; let index"
           cdkDrag
         >
-          {{ item }}
+          <div class="todo-item">
+            {{ item.what }}
+            <br />
+            {{ item.finishBy | date: "MMM d, y" }}
+          </div>
+
+          <div
+            style="width: 50%; margin-left: 5em"
+            *ngIf="overdue(item.finishBy!)"
+          >
+            <img
+              height="90%"
+              width="50%"
+              src="assets/gifs/overdue.gif"
+              frameBorder="0"
+              class="giphy-embed"
+              allowFullScreen
+            />
+          </div>
+
           <button mat-icon-button>
             <mat-icon (click)="deleteTodo(item)">delete</mat-icon>
           </button>
@@ -42,7 +61,25 @@
           *ngFor="let item of inProgress"
           cdkDrag
         >
-          {{ item }}
+          <div class="todo-item">
+            {{ item.what }}
+            <br />
+            {{ item.finishBy | date: "MMM d, y" }}
+          </div>
+
+          <div
+            style="width: 50%; margin-left: 5em"
+            *ngIf="overdue(item.finishBy!)"
+          >
+            <img
+              height="90%"
+              width="50%"
+              src="assets/gifs/overdue.gif"
+              frameBorder="0"
+              class="giphy-embed"
+              allowFullScreen
+            />
+          </div>
           <button mat-icon-button>
             <mat-icon (click)="deleteTodo(item)">delete</mat-icon>
           </button>
@@ -67,7 +104,24 @@
           *ngFor="let item of done"
           cdkDrag
         >
-          {{ item }}
+          <div class="todo-item">
+            {{ item.what }}
+            <br />
+            {{ item.finishBy | date: "MMM d, y" }}
+          </div>
+          <div
+            style="width: 50%; margin-left: 5em"
+            *ngIf="overdue(item.finishBy!)"
+          >
+            <img
+              height="90%"
+              width="50%"
+              src="assets/gifs/overdue.gif"
+              frameBorder="0"
+              class="giphy-embed"
+              allowFullScreen
+            />
+          </div>
           <button mat-icon-button>
             <mat-icon (click)="deleteTodo(item)">delete</mat-icon>
           </button>

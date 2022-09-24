@@ -16,10 +16,11 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ListTodoComponent implements OnInit {
   todos$: Observable<Todo[]>;
-  pending!: string[];
-  inProgress!: string[];
-  done!: string[];
+  pending!: Todo[];
+  inProgress!: Todo[];
+  done!: Todo[];
   status: string = 'pending';
+  finishBy: Date = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
   what!: string;
   todos!: Todo[];
 
@@ -27,7 +28,7 @@ export class ListTodoComponent implements OnInit {
     this.todos$ = this.todoService.fetchTodos();
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<Todo[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -45,13 +46,12 @@ export class ListTodoComponent implements OnInit {
   }
 
   filterTodos({ todos, status }: { todos: Todo[]; status: string }) {
-    return todos
-      .filter((todo: Todo) => todo.status === status)
-      .map((todo: Todo) => todo.what);
+    return todos.filter((todo: Todo) => todo.status === status);
   }
 
   ngOnInit(): void {
     this.todos$.subscribe((todos: Todo[]) => {
+      console.log(todos);
       this.todos = todos;
       this.done = this.filterTodos({ todos, status: 'done' });
       this.inProgress = this.filterTodos({ todos, status: 'inProgress' });
@@ -61,11 +61,12 @@ export class ListTodoComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddItemComponent, {
-      width: '18vw',
-      data: { status: this.status, what: this.what },
+      width: '20vw',
+      data: { status: this.status, what: this.what, finishBy: this.finishBy },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((result: Todo) => {
+      console.log(result);
       this.todoService.addNewTodo(result);
     });
   }
@@ -76,8 +77,15 @@ export class ListTodoComponent implements OnInit {
     );
   }
 
-  deleteTodo(what: string) {
-    this.todos = this.todos.filter((todo: Todo) => todo.what !== what);
+  deleteTodo(todoTobeDeleted: Todo) {
+    this.todos = this.todos.filter(
+      (todo: Todo) => todo.what !== todoTobeDeleted.what
+    );
     this.todoService.updateTodos(this.todos);
+  }
+
+  overdue(finishBy: Date) {
+    const date = new Date();
+    return date > new Date(finishBy);
   }
 }

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 export interface Todo {
   what: string;
   status: string;
+  finishBy?: Date;
 }
 
 @Injectable({
@@ -11,13 +12,17 @@ export interface Todo {
 })
 export class TodoService {
   constructor() {}
-  todos = [
-    { what: 'Bring Grocery', status: 'inProgress' },
-    { what: 'Pay bills', status: 'pending' },
-    { what: 'Exercise', status: 'done' },
+  todos: Todo[] = [
+    {
+      what: 'Bring Grocery',
+      status: 'inProgress',
+      finishBy: new Date('09-27-2022'),
+    },
+    { what: 'Pay bills', status: 'pending', finishBy: new Date('09-28-2022') },
+    { what: 'Exercise', status: 'done', finishBy: new Date('09-29-2022') },
   ];
 
-  todos$ = new BehaviorSubject(this.todos);
+  todos$ = new BehaviorSubject<Todo[]>(this.todos);
 
   fetchTodos() {
     return this.todos$;
