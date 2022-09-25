@@ -20,6 +20,27 @@
       >
         <span>Task Tracker</span>
       </div>
+      <div
+        *ngIf="loggedIn"
+        style="
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin-right: 5em;
+        "
+      >
+        <img
+          style="height: 20%; width: 20%; border-radius: 10px"
+          src="{{ user.photoUrl }}"
+        />
+        <div style="margin-left: 2em">
+          <h4>{{ user.name }}</h4>
+        </div>
+      </div>
+
+      <div *ngIf="loggedIn">
+        <button mat-button (click)="signOut()">Logout</button>
+      </div>
     </mat-toolbar>
   </div>
 </mat-drawer-container>

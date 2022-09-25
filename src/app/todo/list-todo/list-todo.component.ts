@@ -8,6 +8,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { AddItemComponent } from 'src/app/shared/add-item/add-item.component';
 import { MatDialog } from '@angular/material/dialog';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-list-todo',
@@ -23,8 +24,14 @@ export class ListTodoComponent implements OnInit {
   finishBy: Date = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
   what!: string;
   todos!: Todo[];
+  user!: SocialUser;
+  loggedIn!: boolean;
 
-  constructor(private todoService: TodoService, public dialog: MatDialog) {
+  constructor(
+    private todoService: TodoService,
+    public dialog: MatDialog,
+    private authService: SocialAuthService
+  ) {
     this.todos$ = this.todoService.fetchTodos();
   }
 
@@ -51,11 +58,15 @@ export class ListTodoComponent implements OnInit {
 
   ngOnInit(): void {
     this.todos$.subscribe((todos: Todo[]) => {
-      console.log(todos);
       this.todos = todos;
       this.done = this.filterTodos({ todos, status: 'done' });
       this.inProgress = this.filterTodos({ todos, status: 'inProgress' });
       this.pending = this.filterTodos({ todos, status: 'pending' });
+    });
+
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = user != null;
     });
   }
 
