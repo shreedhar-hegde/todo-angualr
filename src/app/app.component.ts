@@ -18,7 +18,6 @@ export class AppComponent {
 
   ngOnInit() {
     if (localStorage.getItem('user')) {
-      console.log('reached app if');
       this.user = JSON.parse(localStorage.getItem('user')!);
       this.loggedIn = this.user != null;
     } else {
@@ -34,8 +33,14 @@ export class AppComponent {
 
   signOut(): void {
     localStorage.removeItem('user');
-    this.authService.signOut().then((res) => {
-      this.router.navigateByUrl('');
-    });
+    this.authService
+      .signOut()
+      .then((res) => {
+        this.router.navigateByUrl('');
+      })
+      .catch((err) => {
+        this.router.navigateByUrl('');
+        console.log(err);
+      });
   }
 }
