@@ -7,22 +7,9 @@
     margin-top: 20vh;
   "
 >
-  <div
-    id="g_id_onload"
-    data-client_id="844527658770-hg18rabt0ouum1ejkli6c3f6tm9dmrqe.apps.googleusercontent.com"
-    data-context="signin"
-    data-ux_mode="popup"
-    data-login_uri="http://localhost:4200/task-tracker"
-    data-auto_prompt="false"
-  ></div>
-
-  <div
-    class="g_id_signin"
-    data-type="standard"
-    data-shape="rectangular"
-    data-theme="outline"
-    data-text="signin_with"
-    data-size="large"
-    data-logo_alignment="left"
-  ></div>
+  <asl-google-signin-button
+    *ngIf="!loggedIn"
+    type="standard"
+    size="medium"
+  ></asl-google-signin-button>
 </div>

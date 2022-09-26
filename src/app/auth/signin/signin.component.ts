@@ -28,7 +28,6 @@ export class SigninComponent {
         this.user = user;
         this.loggedIn = user != null;
         if (this.loggedIn) {
-          console.log('reached nested if signin');
           localStorage.setItem('user', JSON.stringify(user));
           this.router.navigateByUrl('/task-tracker');
         } else {
