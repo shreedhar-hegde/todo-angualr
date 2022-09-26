@@ -77,7 +77,6 @@ export class ListTodoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: Todo) => {
-      console.log(result);
       this.todoService.addNewTodo(result);
     });
   }
