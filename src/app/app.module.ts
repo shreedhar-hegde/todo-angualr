@@ -16,6 +16,8 @@ import {
   SocialAuthServiceConfig,
 } from '@abacritt/angularx-social-login';
 import { AuthModule } from './auth/auth.module';
+import { env } from 'process';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,7 +42,7 @@ import { AuthModule } from './auth/auth.module';
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(process.env['googleId']!),
+            provider: new GoogleLoginProvider(environment.googleId),
           },
         ],
         onError: (err) => {
