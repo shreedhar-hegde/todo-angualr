@@ -40,7 +40,7 @@ import { AuthModule } from './auth/auth.module';
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(''),
+            provider: new GoogleLoginProvider(process.env['googleId']!),
           },
         ],
         onError: (err) => {

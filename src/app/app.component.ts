@@ -17,6 +17,7 @@ export class AppComponent {
   constructor(private authService: SocialAuthService, private router: Router) {}
 
   ngOnInit() {
+    console.log('process', process.env);
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user')!);
       this.loggedIn = this.user != null;
