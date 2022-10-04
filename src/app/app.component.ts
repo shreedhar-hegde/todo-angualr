@@ -40,7 +40,6 @@ export class AppComponent {
       })
       .catch((err) => {
         this.router.navigateByUrl('');
-        console.log(err);
       });
   }
 }

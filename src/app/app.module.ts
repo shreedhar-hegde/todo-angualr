@@ -18,6 +18,7 @@ import {
 import { AuthModule } from './auth/auth.module';
 import { env } from 'process';
 import { environment } from 'src/environments/environment';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { environment } from 'src/environments/environment';
     SharedModule,
     MatNativeDateModule,
     AuthModule,
+    MatFormFieldModule,
   ],
   providers: [
     {
