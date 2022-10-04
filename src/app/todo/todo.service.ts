@@ -24,6 +24,8 @@ export class TodoService {
 
   todos$ = new BehaviorSubject<Todo[]>(this.todos);
 
+  searchInput = new BehaviorSubject<string>('');
+
   fetchTodos() {
     return this.todos$;
   }

@@ -68,6 +68,11 @@ export class ListTodoComponent implements OnInit {
       this.user = user;
       this.loggedIn = user != null;
     });
+
+    this.todoService.searchInput.subscribe((input: string) => {
+      if (input)
+        this.done = this.done.filter((ele) => ele.what.includes(input));
+    });
   }
 
   openDialog(): void {
