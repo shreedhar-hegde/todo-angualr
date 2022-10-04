@@ -1,23 +1,10 @@
-h2 {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-
 .list-container {
   display: flex;
   justify-content: center;
   margin-top: 1em;
 }
-.example-container {
-  width: 400px;
-  max-width: 100%;
-  margin: 0 25px 25px 0;
-  display: inline-block;
-  vertical-align: top;
-}
 
-.example-list {
+.item-card {
   border: solid 1px #ccc;
   min-height: 60px;
   background: white;
@@ -26,7 +13,21 @@ h2 {
   display: block;
 }
 
-.example-box {
+h2 {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.section-container {
+  width: 400px;
+  max-width: 100%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.item {
   padding: 20px 10px;
   border-bottom: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
@@ -38,6 +39,28 @@ h2 {
   cursor: move;
   background: white;
   font-size: 14px;
+}
+
+.item-pending {
+  background-color: rgb(241, 155, 155);
+}
+
+.item-in-progress {
+  background-color: rgb(242, 242, 155);
+}
+
+.item-finishby {
+  background-color: lightgreen;
+}
+
+.gif-container {
+  width: 50%;
+  margin-left: 5em;
+}
+
+.gif-image {
+  height: 90%;
+  width: 50%;
 }
 
 .cdk-drag-preview {
@@ -61,6 +84,17 @@ h2 {
 
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.add-item-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10vw;
+}
+
+.add-item-button {
+  background-color: #673ab7;
+  color: white;
 }
 
 @media (max-width: 650px) {

@@ -1,6 +1,6 @@
 <div>
   <div cdkDropListGroup class="list-container" style="height: 80vh">
-    <div class="example-container">
+    <div class="section-container">
       <h2>Pending</h2>
 
       <div
@@ -8,12 +8,11 @@
         #pendingList="cdkDropList"
         [cdkDropListData]="pending"
         [cdkDropListConnectedTo]="[pendingList]"
-        class="example-list"
+        class="item-card"
         (cdkDropListDropped)="drop($event)"
       >
         <div
-          style="display: flex; background-color: rgb(241, 155, 155)"
-          class="example-box"
+          class="item item-pending"
           *ngFor="let item of pending; let index"
           cdkDrag
         >
@@ -23,18 +22,8 @@
             {{ item.finishBy | date: "MMM d, y" }}
           </div>
 
-          <div
-            style="width: 50%; margin-left: 5em"
-            *ngIf="overdue(item.finishBy!)"
-          >
-            <img
-              height="90%"
-              width="50%"
-              src="assets/gifs/overdue.gif"
-              frameBorder="0"
-              class="giphy-embed"
-              allowFullScreen
-            />
+          <div class="gif-container" *ngIf="overdue(item.finishBy!)">
+            <img class="gif-image" src="assets/gifs/overdue.gif" />
           </div>
 
           <button mat-icon-button>
@@ -44,7 +33,7 @@
       </div>
     </div>
 
-    <div class="example-container">
+    <div class="section-container">
       <h2>In Progress</h2>
 
       <div
@@ -52,12 +41,11 @@
         #inProgressList="cdkDropList"
         [cdkDropListData]="inProgress"
         [cdkDropListConnectedTo]="[inProgressList]"
-        class="example-list"
+        class="item-card"
         (cdkDropListDropped)="drop($event)"
       >
         <div
-          style="background-color: rgb(242, 242, 155)"
-          class="example-box"
+          class="item item-in-progress"
           *ngFor="let item of inProgress"
           cdkDrag
         >
@@ -67,18 +55,8 @@
             {{ item.finishBy | date: "MMM d, y" }}
           </div>
 
-          <div
-            style="width: 50%; margin-left: 5em"
-            *ngIf="overdue(item.finishBy!)"
-          >
-            <img
-              height="90%"
-              width="50%"
-              src="assets/gifs/overdue.gif"
-              frameBorder="0"
-              class="giphy-embed"
-              allowFullScreen
-            />
+          <div class="gif-container" *ngIf="overdue(item.finishBy!)">
+            <img class="gif-image" src="assets/gifs/overdue.gif" />
           </div>
           <button mat-icon-button>
             <mat-icon (click)="deleteTodo(item)">delete</mat-icon>
@@ -87,7 +65,7 @@
       </div>
     </div>
 
-    <div class="example-container">
+    <div class="section-container">
       <h2>Done</h2>
 
       <div
@@ -95,32 +73,17 @@
         #doneList="cdkDropList"
         [cdkDropListData]="done"
         [cdkDropListConnectedTo]="[doneList]"
-        class="example-list"
+        class="item-card"
         (cdkDropListDropped)="drop($event)"
       >
-        <div
-          style="background-color: lightgreen"
-          class="example-box"
-          *ngFor="let item of done"
-          cdkDrag
-        >
+        <div class="item item-finishby" *ngFor="let item of done" cdkDrag>
           <div class="todo-item">
             {{ item.what }}
             <br />
             {{ item.finishBy | date: "MMM d, y" }}
           </div>
-          <div
-            style="width: 50%; margin-left: 5em"
-            *ngIf="overdue(item.finishBy!)"
-          >
-            <img
-              height="90%"
-              width="50%"
-              src="assets/gifs/overdue.gif"
-              frameBorder="0"
-              class="giphy-embed"
-              allowFullScreen
-            />
+          <div class="gif-container" *ngIf="overdue(item.finishBy!)">
+            <img class="gif-image" src="assets/gifs/overdue.gif" />
           </div>
           <button mat-icon-button>
             <mat-icon (click)="deleteTodo(item)">delete</mat-icon>
@@ -130,15 +93,8 @@
     </div>
   </div>
 
-  <div
-    class="add-list-button-container"
-    style="display: flex; justify-content: flex-end; margin-right: 10vw"
-  >
-    <button
-      mat-icon-button
-      style="background-color: #673ab7; color: white"
-      aria-label="Example icon button with a home icon"
-    >
+  <div class="add-item-button-container">
+    <button mat-icon-button class="add-item-button">
       <mat-icon (click)="openDialog()">add</mat-icon>
     </button>
   </div>
