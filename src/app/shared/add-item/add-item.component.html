@@ -1,4 +1,4 @@
-<div mat-dialog-content>
+<div mat-dialog-content class="dialog">
   <mat-form-field appearance="fill">
     <mat-label>Task</mat-label>
     <input matInput [(ngModel)]="data.what" />
@@ -17,7 +17,7 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions class="dialog-buttons">
   <button mat-button (click)="onNoClick()">Cancel</button>
   <button
     mat-button
