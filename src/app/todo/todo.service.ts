@@ -19,6 +19,7 @@ export class TodoService {
       finishBy: new Date('09-27-2022'),
     },
     { what: 'Pay bills', status: 'pending', finishBy: new Date('09-28-2022') },
+    { what: 'Pay bills', status: 'pending', finishBy: new Date('09-28-2022') },
     { what: 'Exercise', status: 'done', finishBy: new Date('09-29-2022') },
   ];
 

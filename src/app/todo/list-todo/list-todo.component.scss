@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row-reverse;
   margin-right: 10vw;
-  margin-top: 5vh;
+  margin-top: 3vh;
 }
 
 .list-container {
@@ -13,6 +13,8 @@
 }
 
 .section-container {
+  height: 50vh;
+  overflow: scroll;
 }
 
 .item-card {
@@ -137,5 +139,21 @@ h2 {
   .empty-gif {
     height: 100%;
     width: 90%;
+  }
+
+  .section-container {
+    height: 27vh;
+    overflow: scroll;
+    width: 90vw;
+  }
+
+  .item-card {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+  }
+
+  .item {
+    margin: 10px;
   }
 }

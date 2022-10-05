@@ -14,7 +14,6 @@
         [cdkDropListConnectedTo]="[pendingList]"
         class="item-card"
         (cdkDropListDropped)="drop($event)"
-        *ngIf="pending.length > 0"
       >
         <div
           class="item item-pending"
@@ -35,9 +34,9 @@
             <mat-icon (click)="deleteTodo(item)">delete</mat-icon>
           </button>
         </div>
-      </div>
-      <div class="empty-state-gif" *ngIf="pending.length === 0">
-        <img class="empty-gif" src="assets/gifs/empty.webp" />
+        <div class="empty-state-gif" *ngIf="pending.length === 0">
+          <img class="empty-gif" src="assets/gifs/empty.webp" />
+        </div>
       </div>
     </div>
 
@@ -51,7 +50,6 @@
         [cdkDropListConnectedTo]="[inProgressList]"
         class="item-card"
         (cdkDropListDropped)="drop($event)"
-        *ngIf="inProgress.length > 0"
       >
         <div
           class="item item-in-progress"
@@ -71,9 +69,9 @@
             <mat-icon (click)="deleteTodo(item)">delete</mat-icon>
           </button>
         </div>
-      </div>
-      <div class="empty-state-gif" *ngIf="inProgress.length === 0">
-        <img class="empty-gif" src="assets/gifs/empty.webp" />
+        <div class="empty-state-gif" *ngIf="inProgress.length === 0">
+          <img class="empty-gif" src="assets/gifs/empty.webp" />
+        </div>
       </div>
     </div>
 
@@ -87,7 +85,6 @@
         [cdkDropListConnectedTo]="[doneList]"
         class="item-card"
         (cdkDropListDropped)="drop($event)"
-        *ngIf="done.length > 0"
       >
         <div class="item item-finishby" *ngFor="let item of done" cdkDrag>
           <div class="todo-item">
@@ -102,9 +99,9 @@
             <mat-icon (click)="deleteTodo(item)">delete</mat-icon>
           </button>
         </div>
-      </div>
-      <div class="empty-state-gif" *ngIf="done.length === 0">
-        <img class="empty-gif" src="assets/gifs/empty.webp" />
+        <div class="empty-state-gif" *ngIf="done.length === 0">
+          <img class="empty-gif" src="assets/gifs/empty.webp" />
+        </div>
       </div>
     </div>
   </div>
