@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: row-reverse;
   margin-right: 10vw;
-  margin-top: 3vh;
 }
 
 .list-container {
@@ -118,7 +117,7 @@ h2 {
 
 .empty-gif {
   height: 90%;
-  width: 100%;
+  width: 90%;
 }
 
 @media (max-width: 650px) {
@@ -129,6 +128,9 @@ h2 {
     justify-content: space-evenly;
   }
 
+  h2 {
+    margin: 0;
+  }
   .empty-state-gif {
     display: flex;
     align-items: center;
@@ -137,14 +139,16 @@ h2 {
     width: 95%;
   }
   .empty-gif {
-    height: 100%;
-    width: 90%;
+    height: 20vh;
+    width: 70%;
   }
 
   .section-container {
-    height: 27vh;
+    height: 25vh;
     overflow: scroll;
     width: 90vw;
+    margin-top: 0;
+    margin-bottom: 1vh;
   }
 
   .item-card {
