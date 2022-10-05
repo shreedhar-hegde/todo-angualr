@@ -9,6 +9,7 @@ import {
 import { AddItemComponent } from 'src/app/shared/add-item/add-item.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-list-todo',
@@ -30,7 +31,8 @@ export class ListTodoComponent implements OnInit {
   constructor(
     private todoService: TodoService,
     public dialog: MatDialog,
-    private authService: SocialAuthService
+    private authService: SocialAuthService,
+    private breakpointObserver: BreakpointObserver
   ) {
     this.todos$ = this.todoService.fetchTodos();
   }
@@ -90,10 +92,10 @@ export class ListTodoComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(AddItemComponent, {
-      width: '20vw',
-      data: { status: this.status, what: this.what, finishBy: this.finishBy },
-    });
+    const dialogRef = this.dialog.open(
+      AddItemComponent,
+      this.getDialogDimensions()
+    );
 
     dialogRef.afterClosed().subscribe((result: Todo) => {
       this.todoService.addNewTodo(result);
@@ -116,5 +118,28 @@ export class ListTodoComponent implements OnInit {
   overdue(finishBy: Date) {
     const date = new Date();
     return date > new Date(finishBy);
+  }
+
+  getDialogDimensions() {
+    const mobileDialogConfig = {
+      maxHeight: '300px',
+      maxWidth: '500px',
+      
+    };
+
+    const desktopDialogConfig = {
+      maxHeight: '600px',
+      maxWidth: '300px',
+    };
+
+    const isMobile = this.breakpointObserver.isMatched('(max-width: 600px)');
+    const data = {
+      status: this.status,
+      what: this.what,
+      finishBy: this.finishBy,
+    };
+    return isMobile
+      ? { mobileDialogConfig, data }
+      : { desktopDialogConfig, data };
   }
 }
