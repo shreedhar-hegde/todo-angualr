@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   margin-top: 1em;
-  height: 80vh;
+  height: 100%;
 }
 
 .section-container {
@@ -98,14 +98,25 @@ h2 {
 }
 
 .add-item-button-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 10vw;
+  position: fixed;
+  bottom: 2vh;
+  left: 90vw;
 }
 
 .add-item-button {
   background-color: #673ab7;
   color: white;
+}
+
+.empty-state-gif {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-gif {
+  height: 90%;
+  width: 100%;
 }
 
 @media (max-width: 650px) {
@@ -114,5 +125,17 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+  }
+
+  .empty-state-gif {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
+    width: 95%;
+  }
+  .empty-gif {
+    height: 100%;
+    width: 90%;
   }
 }

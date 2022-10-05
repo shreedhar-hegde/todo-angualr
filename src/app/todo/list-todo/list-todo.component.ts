@@ -56,13 +56,17 @@ export class ListTodoComponent implements OnInit {
     return todos.filter((todo: Todo) => todo.status === status);
   }
 
-  ngOnInit(): void {
+  assignTodos() {
     this.todos$.subscribe((todos: Todo[]) => {
       this.todos = todos;
       this.done = this.filterTodos({ todos, status: 'done' });
       this.inProgress = this.filterTodos({ todos, status: 'inProgress' });
       this.pending = this.filterTodos({ todos, status: 'pending' });
     });
+  }
+
+  ngOnInit(): void {
+    this.assignTodos();
 
     this.authService.authState.subscribe((user) => {
       this.user = user;
@@ -70,8 +74,18 @@ export class ListTodoComponent implements OnInit {
     });
 
     this.todoService.searchInput.subscribe((input: string) => {
-      if (input)
-        this.done = this.done.filter((ele) => ele.what.includes(input));
+      if (!input) {
+        this.assignTodos();
+      }
+      this.done = this.done.filter((ele) =>
+        ele.what.toLowerCase().includes(input.toLowerCase())
+      );
+      this.pending = this.pending.filter((ele) =>
+        ele.what.toLowerCase().includes(input.toLowerCase())
+      );
+      this.inProgress = this.inProgress.filter((ele) =>
+        ele.what.toLowerCase().includes(input.toLowerCase())
+      );
     });
   }
 
