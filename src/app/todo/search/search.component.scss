@@ -7,3 +7,12 @@
 .example-full-width {
   width: 100%;
 }
+
+@media (max-width: 650px) {
+  mat-form-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75vw !important;
+  }
+}
