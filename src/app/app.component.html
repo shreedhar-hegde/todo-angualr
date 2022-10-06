@@ -23,7 +23,6 @@
 
       <div *ngIf="loggedIn" style="display: flex; align-items: center">
         <img
-          *ngIf="loggedIn"
           style="height: 90%; width: 50%; border-radius: 10px; cursor: pointer"
           [matMenuTriggerFor]="menu"
           src="{{ user.photoUrl }}"
