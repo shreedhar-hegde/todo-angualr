@@ -10,6 +10,7 @@ import { AddItemComponent } from 'src/app/shared/add-item/add-item.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-list-todo',
@@ -22,6 +23,7 @@ export class ListTodoComponent implements OnInit {
   inProgress!: Todo[];
   done!: Todo[];
   status: string = 'pending';
+  id!: string;
   finishBy: Date = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
   what!: string;
   todos!: Todo[];
@@ -104,9 +106,7 @@ export class ListTodoComponent implements OnInit {
 
   deleteTodo(todoTobeDeleted: Todo) {
     this.todos = this.todos.filter(
-      (todo: Todo) =>
-        todo.what !== todoTobeDeleted.what &&
-        todo.status !== todoTobeDeleted.status
+      (todo: Todo) => todo.id !== todoTobeDeleted.id
     );
     this.todoService.updateTodos(this.todos);
   }
@@ -129,6 +129,7 @@ export class ListTodoComponent implements OnInit {
 
     const isMobile = this.breakpointObserver.isMatched('(max-width: 600px)');
     const data = {
+      id: uuid.v4(),
       status: this.status,
       what: this.what,
       finishBy: this.finishBy,
