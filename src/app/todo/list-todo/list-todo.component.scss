@@ -9,6 +9,7 @@
   justify-content: center;
   margin-top: 1em;
   height: 100%;
+  margin-left: 1em;
 }
 
 .section-container {
@@ -29,10 +30,16 @@ h2 {
   align-items: center;
   justify-content: center;
   display: flex;
+
+  border: solid 0px;
+  border-radius: 5px;
+  padding: 0.5em;
+  font-weight: bold;
+  font-family: fantasy;
 }
 
 .section-container {
-  width: 400px;
+  width: 33vw;
   max-width: 100%;
   margin: 0 25px 25px 0;
   display: inline-block;
@@ -40,39 +47,54 @@ h2 {
 }
 
 .item {
-  padding: 20px 10px;
   border-bottom: solid 1px #ccc;
-  color: rgba(0, 0, 0, 0.87);
+  color: white;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
   box-sizing: border-box;
   cursor: move;
   background: white;
-  font-size: 14px;
+  font-size: 1em;
+  font-family: fantasy;
+  font-weight: bold;
+}
+
+.todo-item {
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  overflow-wrap: break-word;
+  padding: 1em;
 }
 
 .item-pending {
-  background-color: rgb(241, 155, 155);
+  background-color: #ef2d56;
 }
 
 .item-in-progress {
-  background-color: rgb(242, 242, 155);
+  background-color: #fec601;
 }
 
 .item-finishby {
-  background-color: lightgreen;
+  background-color: #0cce6b;
 }
 
 .gif-container {
-  width: 50%;
-  margin-left: 5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  // margin-left: 5em;
 }
 
 .gif-image {
   height: 90%;
-  width: 50%;
+  width: 100%;
+}
+
+.delete-todo {
+  width: 10%;
 }
 
 .cdk-drag-preview {
@@ -121,11 +143,15 @@ h2 {
 }
 
 @media (max-width: 650px) {
+  .search-container {
+    height: 9vh;
+  }
   .list-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    margin: 0;
   }
 
   h2 {
@@ -144,7 +170,7 @@ h2 {
   }
 
   .section-container {
-    height: 25vh;
+    height: 27vh;
     overflow: scroll;
     width: 90vw;
     margin-top: 0;
@@ -155,6 +181,7 @@ h2 {
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
+    height: 70%;
   }
 
   .item {

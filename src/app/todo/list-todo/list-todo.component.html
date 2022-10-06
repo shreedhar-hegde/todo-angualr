@@ -59,13 +59,14 @@
           <div class="todo-item">
             {{ item.what }}
             <br />
+
             {{ item.finishBy | date: "MMM d, y" }}
           </div>
 
           <div class="gif-container" *ngIf="overdue(item.finishBy!)">
             <img class="gif-image" src="assets/gifs/overdue.gif" />
           </div>
-          <button mat-icon-button>
+          <button mat-icon-button class="delete-todo">
             <mat-icon (click)="deleteTodo(item)">delete</mat-icon>
           </button>
         </div>

@@ -1,6 +1,6 @@
 <mat-drawer-container class="example-container" autosize>
   <div class="example-sidenav-content">
-    <mat-toolbar color="primary" mat-toolbar>
+    <mat-toolbar color="primary" mat-toolbar style="font-family: fantasy">
       <button
         mat-icon-button
         class="example-icon"
@@ -20,26 +20,18 @@
       >
         <span>Task Tracker</span>
       </div>
-      <div
-        *ngIf="loggedIn"
-        style="
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          margin-right: 5em;
-        "
-      >
+
+      <div *ngIf="loggedIn" style="display: flex; align-items: center">
         <img
-          style="height: 20%; width: 20%; border-radius: 10px"
+          *ngIf="loggedIn"
+          style="height: 90%; width: 50%; border-radius: 10px; cursor: pointer"
+          [matMenuTriggerFor]="menu"
           src="{{ user.photoUrl }}"
         />
-        <div style="margin-left: 2em">
-          <h4>{{ user.name }}</h4>
-        </div>
-      </div>
-
-      <div *ngIf="loggedIn">
-        <button mat-button (click)="signOut()">Logout</button>
+        <mat-menu #menu="matMenu">
+          <button disabled="" mat-menu-item>{{ user.name }}</button>
+          <button mat-menu-item (click)="signOut()">Logout</button>
+        </mat-menu>
       </div>
     </mat-toolbar>
   </div>

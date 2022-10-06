@@ -19,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
 import { env } from 'process';
 import { environment } from 'src/environments/environment';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,6 +36,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatNativeDateModule,
     AuthModule,
     MatFormFieldModule,
+    MatMenuModule,
   ],
   providers: [
     {
