@@ -102,15 +102,11 @@ export class ListTodoComponent implements OnInit {
     });
   }
 
-  deletePending(pendingIndex: string) {
-    this.pending = this.pending.filter(
-      (item, index) => index === parseInt(pendingIndex)
-    );
-  }
-
   deleteTodo(todoTobeDeleted: Todo) {
     this.todos = this.todos.filter(
-      (todo: Todo) => todo.what !== todoTobeDeleted.what
+      (todo: Todo) =>
+        todo.what !== todoTobeDeleted.what &&
+        todo.status !== todoTobeDeleted.status
     );
     this.todoService.updateTodos(this.todos);
   }
@@ -124,7 +120,6 @@ export class ListTodoComponent implements OnInit {
     const mobileDialogConfig = {
       maxHeight: '300px',
       maxWidth: '500px',
-      
     };
 
     const desktopDialogConfig = {
